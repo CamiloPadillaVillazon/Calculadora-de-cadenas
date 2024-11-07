@@ -1,15 +1,10 @@
-import sumar from "./sumador";
+import { CalculadoraCadena } from './CalculadoraCadena.js';
 
-const first = document.querySelector("#primer-numero");
-const second = document.querySelector("#segundo-numero");
-const form = document.querySelector("#sumar-form");
-const div = document.querySelector("#resultado-div");
+document.getElementById("calcular-form").addEventListener("submit", (event) => {
+  event.preventDefault(); // Previene la recarga de la página
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
-
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
+  const cadena = document.getElementById("cadena-input").value;
+  const calculadora = new CalculadoraCadena();
+  const resultado = calculadora.calcular(cadena);
+  document.getElementById("resultado-div").innerText = resultado;
 });
