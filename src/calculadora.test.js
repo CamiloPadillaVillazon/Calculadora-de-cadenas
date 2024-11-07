@@ -1,7 +1,13 @@
-import ingresarNUmero from "./calculadora.js";
+import { CalculadoraCadena } from './calculadora.js';
 
-describe("Sumar", () => {
-it("deberia devolver el mismo numero", () => {
-    expect(ingresarNUmero(5)).toEqual(5);
-});
+describe('Calculadora de Cadenas', () => {
+    let calculadora;
+
+    beforeEach(() => {
+        calculadora = new CalculadoraCadena();
+    });
+
+    it('debería retornar 0 para una cadena vacía', () => {
+        expect(calculadora.calcular("")).toBe(0);
+    });
 });
