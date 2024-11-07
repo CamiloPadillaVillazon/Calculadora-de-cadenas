@@ -14,4 +14,8 @@ describe('Calculadora de Cadenas', () => {
     it('debería retornar la suma de los números separados por coma', () => {
         expect(calculadora.calcularPorComas("1,2,4,8")).toBe(15); // Prueba de cadena separada por comas
     });
+
+    it('debería retornar la suma de los números separados por coma y guion', () => {
+        expect(calculadora.sumaComasGuion("1-2,3")).toBe(6); // Prueba de cadena con guion y coma
+    });
 });

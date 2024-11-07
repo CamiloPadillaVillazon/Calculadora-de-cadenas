@@ -10,4 +10,10 @@ export class CalculadoraCadena {
         const numeros = cadena.split(',').map(Number); // Separar por coma y convertir a números
         return numeros.reduce((a, b) => a + b, 0); // Sumar los números
     }
+
+    sumaComasGuion(cadena) {
+        if (cadena === "") return 0; // Caso de cadena vacía
+        const numeros = cadena.split(/[-,]/).map(Number); // Separar por coma y guion, luego convertir a números
+        return numeros.reduce((a, b) => a + b, 0); // Sumar los números
+    }
 }
