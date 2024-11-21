@@ -43,4 +43,22 @@ export class CalculadoraCadena {
 
 
 
+    calcular(cadena) {
+        if (cadena.trim() === "") return 0;
+
+        const delimitadorPersonalizado = cadena.match(/^\/\/\[(.+?)\]\s/);
+        let delimitador = /[,|-]/;
+
+        if (delimitadorPersonalizado) {
+            delimitador = new RegExp(delimitadorPersonalizado[1]);
+            cadena = cadena.split("\n")[1];
+        }
+
+        const numeros = cadena.split(delimitador).map(Number).filter(n => n <= 1000);
+        return numeros.reduce((a, b) => a + b, 0);
+    }
+
+
+
+
 }

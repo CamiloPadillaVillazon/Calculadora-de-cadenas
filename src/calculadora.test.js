@@ -35,6 +35,9 @@ describe('Calculadora de Cadenas', () => {
         expect(calculadora.calcular("//[;]\n6;7;4")).toBe(17);
     });
     
+    it('debería ignorar números mayores a 1000', () => {
+        expect(calculadora.calcular("2,1001")).toBe(2);
+    });
     
     
     
