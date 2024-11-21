@@ -18,4 +18,9 @@ describe('Calculadora de Cadenas', () => {
     it('debería retornar la suma de los números separados por coma y guion', () => {
         expect(calculadora.sumaComasGuion("1-2,3")).toBe(6); // Prueba de cadena con guion y coma
     });
+
+    it('debería retornar la suma de los números usando delimitadores personalizados', () => {
+        // Prueba con delimitador ';'
+        expect(calculadora.delimitador("//[;] 6;7;4")).toBe(17); // 6 + 7 + 4 = 17
+    });
 });

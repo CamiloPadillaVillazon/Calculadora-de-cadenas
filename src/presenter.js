@@ -1,4 +1,4 @@
-import { CalculadoraCadena } from './CalculadoraCadena.js';
+import { CalculadoraCadena } from './calculadora.js';
 
 document.getElementById("calcular-form").addEventListener("submit", (event) => {
   event.preventDefault(); // Previene la recarga de la página
