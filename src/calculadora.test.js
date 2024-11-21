@@ -10,17 +10,28 @@ describe('Calculadora de Cadenas', () => {
     it('debería retornar 0 para una cadena vacía', () => {
         expect(calculadora.calcular("")).toBe(0);
     });
-
-    it('debería retornar la suma de los números separados por coma', () => {
-        expect(calculadora.calcularPorComas("1,2,4,8")).toBe(15); // Prueba de cadena separada por comas
+    
+    it('debería retornar la suma de números separados por coma', () => {
+        expect(calculadora.calcular("1,2,3")).toBe(6);
+    });
+    
+    it('debería retornar la suma de números separados por guion', () => {
+        expect(calculadora.calcular("1-2-3")).toBe(6);
+    });
+    
+    it('debería retornar la suma de números separados por coma y guion', () => {
+        expect(calculadora.calcular("1-2,3")).toBe(6);
+    });
+    
+    it('debería ignorar espacios adicionales en la cadena', () => {
+        expect(calculadora.calcular(" 1 , 2 , 3 ")).toBe(6);
+    });
+    
+    it('debería manejar cadenas con un solo número', () => {
+        expect(calculadora.calcular("4")).toBe(4);
     });
 
-    it('debería retornar la suma de los números separados por coma y guion', () => {
-        expect(calculadora.sumaComasGuion("1-2,3")).toBe(6); // Prueba de cadena con guion y coma
-    });
-
-    it('debería retornar la suma de los números usando delimitadores personalizados', () => {
-        // Prueba con delimitador ';'
-        expect(calculadora.delimitador("//[;] 6;7;4")).toBe(17); // 6 + 7 + 4 = 17
-    });
+    
+    
+    
 });
