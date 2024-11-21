@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xml:lang="es">
   <head>
-    <title>Calculadora de Cadenas</title>
+    <title>Calculadora</title>
   </head>
   <body>
     <h1>Calculadora de Cadenas</h1>
-    <form id="calcular-form">
-      <label for="cadena-input">Ingresa la cadena:</label>
-      <input type="text" id="cadena-input" />
-      <input type="submit" value="Calcular" id="calcular-button" />
+    <form id="calc-form">
+      <label for="string">Ingrese la Cadena: </label>
+      <input type="text" id="string">
+      <input type="submit" id="submit-button">
     </form>
-    <div id="resultado-div"></div>
+    <div id="resultado"></div>
 
     <script type="module" src="./src/presenter.js"></script>
   </body>
 </html>
+
+

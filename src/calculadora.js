@@ -1,81 +1,24 @@
 
-export class CalculadoraCadena {
-    calcular(cadena) {
-        if (cadena.trim() === "") return 0;
-        return 0;
+function calcular (string) {
+    if(string ==" "){
+        return "0"
     }
+    let delimitadores = /[,|-]/
 
-
-    calcular(cadena) {
-        if (cadena.trim() === "") return 0;
-
-        const numeros = cadena.split(',').map(Number);
-        return numeros.reduce((a, b) => a + b, 0);
-    }
-
-
-    calcular(cadena) {
-        if (cadena.trim() === "") return 0;
-
-        const numeros = cadena.split(/[,|-]/).map(Number);
-        return numeros.reduce((a, b) => a + b, 0);
-    }
-
-    calcular(cadena) {
-        if (cadena.trim() === "") return 0;
-
-        let delimitador = /[,|-]/; // Delimitadores por defecto
-
-        // Detectar delimitador personalizado
-        const delimitadorPersonalizado = cadena.match(/^\/\/\[(.+?)\]\n/);
-        if (delimitadorPersonalizado) {
-            delimitador = new RegExp(delimitadorPersonalizado[1]);
-            // Eliminar la línea que define el delimitador
-            cadena = cadena.replace(/^\/\/\[(.+?)\]\n/, '');
+    if(string.startsWith("//[")){
+        const match = string.match(/\/\/(\[.+\])/);
+        if(match){
+            const delimitadorPersonalizado = match[1].slice(1,-1).split("][")
+            const delimitadoresRegex = delimitadorPersonalizado.map(delim => 
+                delim.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&")
+            ).join("|");
+            delimitadores = new RegExp(`${delimitadoresRegex}|,|-`); 
+            string = string.replace(match[0], "");
         }
-
-        // Dividir la cadena usando el delimitador y convertir a números
-        const numeros = cadena.split(delimitador).map(Number);
-
-        // Retornar la suma de los números
-        return numeros.reduce((a, b) => a + b, 0);
     }
-
-
-
-    calcular(cadena) {
-        if (cadena.trim() === "") return 0;
-
-        const delimitadorPersonalizado = cadena.match(/^\/\/\[(.+?)\]\s/);
-        let delimitador = /[,|-]/;
-
-        if (delimitadorPersonalizado) {
-            delimitador = new RegExp(delimitadorPersonalizado[1]);
-            cadena = cadena.split("\n")[1];
-        }
-
-        const numeros = cadena.split(delimitador).map(Number).filter(n => n <= 1000);
-        return numeros.reduce((a, b) => a + b, 0);
-    }
-
-    calcular(cadena) {
-        if (cadena.trim() === "") return 0;
-
-        const delimitadorPersonalizado = cadena.match(/^\/\/\[(.+?)\]\s/);
-        let delimitadores = /[,|-]/;
-
-        if (delimitadorPersonalizado) {
-            const delimitadoresEncontrados = cadena.match(/\/\/(\[.+?\])\s/)[1];
-            delimitadores = new RegExp(delimitadoresEncontrados.match(/\[(.+?)\]/g).map(d => d.slice(1, -1)).join("|"));
-            cadena = cadena.split("\n")[1];
-        }
-
-        const numeros = cadena.split(delimitadores).map(Number).filter(n => n <= 1000);
-        return numeros.reduce((a, b) => a + b, 0);
-    }
-
-
-
-
-
+    const numeros = string.split(delimitadores).map(Number).filter(num => num <= 1000)
+    const result = numeros.reduce((sum, num) => sum + num, 0);
+    return result.toString();
 }
+
+export default calcular;

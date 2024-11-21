@@ -1,47 +1,41 @@
-import { CalculadoraCadena } from './calculadora.js';
+import calcular from "./calculadora.js"; 
 
-describe('Calculadora de Cadenas', () => {
-    let calculadora;
+test('Devuelve 0 cuando no hay nada ingresado', () =>{
+    expect(calcular(" ")).toBe("0")
+});
 
-    beforeEach(() => {
-        calculadora = new CalculadoraCadena();
-    });
+test('Devuelve el mismo valor de la cadena', () =>{
+    expect(calcular("4")).toBe("4")
+}); 
 
-    it('debería retornar 0 para una cadena vacía', () => {
-        expect(calculadora.calcular("")).toBe(0);
-    });
-    
-    it('debería retornar la suma de números separados por coma', () => {
-        expect(calculadora.calcular("1,2,3")).toBe(6);
-    });
-    
-    it('debería retornar la suma de números separados por guion', () => {
-        expect(calculadora.calcular("1-2-3")).toBe(6);
-    });
-    
-    it('debería retornar la suma de números separados por coma y guion', () => {
-        expect(calculadora.calcular("1-2,3")).toBe(6);
-    });
-    
-    it('debería ignorar espacios adicionales en la cadena', () => {
-        expect(calculadora.calcular(" 1 , 2 , 3 ")).toBe(6);
-    });
-    
-    it('debería manejar cadenas con un solo número', () => {
-        expect(calculadora.calcular("4")).toBe(4);
-    });
+test('Devuelve la suma de 2 numeros separados por comas', () =>{
+    expect(calcular('1,4')).toBe("5")
+}); 
 
-    it('debería retornar la suma de números usando delimitador personalizado', () => {
-        expect(calculadora.calcular("//[;]\n6;7;4")).toBe(17);
-    });
-    
-    it('debería ignorar números mayores a 1000', () => {
-        expect(calculadora.calcular("2,1001")).toBe(2);
-    });
-    
-    it('debería manejar múltiples delimitadores', () => {
-        expect(calculadora.calcular("//[*][%]\n1*2%3,7-9")).toBe(22);
-    });
-    
-    
+test('Devuelve la suma de 3 numeros separados por comas', () =>{
+    expect(calcular('1,4,5')).toBe("10")
+}); 
+
+test('Devuelve la suma de 2 numeros separados por guiones', () =>{
+    expect(calcular('1-4')).toBe("5")
+}); 
+
+test('Devuelve la suma de 3 numeros separados por guiones', () =>{
+    expect(calcular('1-4-5')).toBe("10")
+}); 
+
+test('Devuelve la suma de numeros separados por guiones y comas', () =>{
+    expect(calcular('1-4,5')).toBe("10")
+}); 
+
+test('Devuelve la suma de numeros separados por delimitadores personalizados', () =>{
+    expect(calcular('//[/]1/4/5')).toBe("10")
+}); 
+
+test('Devuelve la suma de numeros con limitadores e ignora a los numeros mayores a 1000', () =>{
+    expect(calcular('//[/] 1/4000/5')).toBe("6")
+}); 
+
+test('Devuelve la suma usando mas de un delimitador personalizado', () => {
+    expect(calcular('//[*][%]1*2%3,7-9')).toBe("22");
 });
