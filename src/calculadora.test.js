@@ -31,6 +31,10 @@ describe('Calculadora de Cadenas', () => {
         expect(calculadora.calcular("4")).toBe(4);
     });
 
+    it('debería retornar la suma de números usando delimitador personalizado', () => {
+        expect(calculadora.calcular("//[;]\n6;7;4")).toBe(17);
+    });
+    
     
     
     
