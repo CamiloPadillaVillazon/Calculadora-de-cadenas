@@ -58,6 +58,23 @@ export class CalculadoraCadena {
         return numeros.reduce((a, b) => a + b, 0);
     }
 
+    calcular(cadena) {
+        if (cadena.trim() === "") return 0;
+
+        const delimitadorPersonalizado = cadena.match(/^\/\/\[(.+?)\]\s/);
+        let delimitadores = /[,|-]/;
+
+        if (delimitadorPersonalizado) {
+            const delimitadoresEncontrados = cadena.match(/\/\/(\[.+?\])\s/)[1];
+            delimitadores = new RegExp(delimitadoresEncontrados.match(/\[(.+?)\]/g).map(d => d.slice(1, -1)).join("|"));
+            cadena = cadena.split("\n")[1];
+        }
+
+        const numeros = cadena.split(delimitadores).map(Number).filter(n => n <= 1000);
+        return numeros.reduce((a, b) => a + b, 0);
+    }
+
+
 
 
 

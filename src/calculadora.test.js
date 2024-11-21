@@ -39,6 +39,9 @@ describe('Calculadora de Cadenas', () => {
         expect(calculadora.calcular("2,1001")).toBe(2);
     });
     
+    it('debería manejar múltiples delimitadores', () => {
+        expect(calculadora.calcular("//[*][%]\n1*2%3,7-9")).toBe(22);
+    });
     
     
 });
